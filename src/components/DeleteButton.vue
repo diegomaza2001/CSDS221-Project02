@@ -18,7 +18,7 @@
 
 <script>
 import toastr from "toastr";
-import 'toastr/build/toastr.css'
+import 'toastr/build/toastr.css';
   export default {
     props: {
         taskList: Array,
