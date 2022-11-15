@@ -84,7 +84,9 @@
 </template>
 
 <script>
-  export default {
+import toastr from "toastr";
+import 'toastr/build/toastr.css';
+export default {
     props: {
         taskList: Array,
     },
@@ -102,6 +104,12 @@
             this.deadline = "";
             this.priority = "";
             this.dialog = false;
+            toastr.options = {
+                "newestOnTop": false,
+                "positionClass": "toast-bottom-right",
+                "showDuration": "300"
+            }   
+            toastr["success"]("Task was added successfully!");
         },
     },
     created() {

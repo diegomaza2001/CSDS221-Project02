@@ -26,12 +26,17 @@ import 'toastr/build/toastr.css';
     },
     methods: {
         deleteTask: function (event) {
-        for(let i = 0; i < this.taskList.length; i++){
-            if(this.taskList[i].title == this.title){
-                this.taskList.splice(i,1);
+            for(let i = 0; i < this.taskList.length; i++){
+                if(this.taskList[i].title == this.title){
+                    this.taskList.splice(i,1);
+                }
             }
-        }
-        toastr["success"]("deletion complete");
+            toastr.options = {
+                "newestOnTop": false,
+                "positionClass": "toast-bottom-right",
+                "showDuration": "300"
+            }   
+            toastr["success"]("Task was deleted successfully!");
         },
     },
     created() {
