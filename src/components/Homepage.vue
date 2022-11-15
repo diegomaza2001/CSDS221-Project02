@@ -54,7 +54,7 @@
                             <td><v-checkbox color="primary"></v-checkbox></td>
                             <td>
                                 <UpdateBtn :taskList="taskList" :title="task.title"></UpdateBtn>
-                                <DeleteBtn @delete-event="showSnackbar" :taskList="taskList" :title="task.title"></DeleteBtn> 
+                                <DeleteBtn :taskList="taskList" :title="task.title"></DeleteBtn> 
                             </td>
                         </tr>
                         </tbody>
@@ -62,22 +62,6 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-snackbar
-          v-model="snackbar"
-          :timeout="timeout"
-        >
-          {{ text }}
-
-          <template v-slot:actions>
-            <v-btn
-              color="blue"
-              variant="text"
-              @click="snackbar = false"
-            >
-              Close
-            </v-btn>
-          </template>
-        </v-snackbar>
     </v-main>
 </template>
   
@@ -96,19 +80,10 @@ import toastr from "toastr";
       AddButton
     },
     created() {
-      toastr.success('abc')
-    },
-    methods: {
-      showSnackbar(){
-        alert("SHOW SNACKBAR SHOW");
-        this.snackbar = true;
-      }
+      
     },
     data () {
       return {
-        text: 'My timeout is set to 2000.',
-        timeout: 2000,
-        snackbar: false,
         taskList: [
           {
             title: 'Math Homework 1',

@@ -31,8 +31,6 @@ import 'toastr/build/toastr.css';
                 this.taskList.splice(i,1);
             }
         }
-        //this.$emit('delete-event');
-        alert("abc");
         toastr["success"]("deletion complete");
         },
     },
