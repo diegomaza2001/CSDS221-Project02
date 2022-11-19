@@ -116,7 +116,7 @@ export default {
                     let displayDeadline = moment(this.deadline).format("MM/DD/YYYY");
                 }
                 else {
-                    this.displayDeadline = "No deadline selected";
+                    this.displayDeadline = "";
                 }
                 this.taskList.push({
                     title: this.title,
@@ -149,7 +149,7 @@ export default {
                             let displayDeadline = moment(this.deadline).format("MM/DD/YYYY");
                         }
                         else {
-                            this.displayDeadline = "No deadline selected";
+                            this.displayDeadline = "";
                         }
                         this.taskList[i] = {
                             title: this.taskList[i].title,
