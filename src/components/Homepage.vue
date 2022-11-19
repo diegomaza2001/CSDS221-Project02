@@ -101,40 +101,7 @@ import { Container } from 'postcss';
     },
     data () {
       return {
-        taskList: [
-          {
-            title: 'Math Homework 1',
-            description: 'write math',
-            deadline: '11-14-22',
-            complete: false,
-            priority: 'med',
-            isChecked: false,
-          },
-          {
-            title: 'Math Homework 2',
-            description: 'write math',
-            deadline: '11-14-22',
-            complete: false,
-            priority: 'med',
-            isChecked: false,
-          },
-          {
-            title: 'Math Homework 3',
-            description: 'write math',
-            deadline: '11-14-22',
-            complete: false,
-            priority: 'med',
-            isChecked: false,
-          },
-          {
-            title: 'Math Homework 4',
-            description: 'write math',
-            deadline: '11-14-22',
-            complete: false,
-            priority: 'med',
-            isChecked: false,
-          },
-        ],
+        taskList: [],
       }
     },
     methods: {

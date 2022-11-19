@@ -93,6 +93,10 @@ export default {
     },
     methods: {
         closeDialog: function () {
+            this.title = "";
+            this.description = "";
+            this.deadline = "";
+            this.priority = "";
             this.dialog = false;
             this.titleErr = [];
             this.descriptionErr = [];
@@ -136,13 +140,12 @@ export default {
                 for(let i = 0; i < this.taskList.length; i++){
                     if(this.taskList[i].title == this.inputTitle){
                         this.taskList[i] = {
-                            title: this.title,
+                            title: this.taskList[i].title,
                             description: this.description,
                             deadline: moment(this.deadline).format("MM/DD/YYYY"),
                             priority: this.priority,
                         };
                         this.dialog = false;
-                        
                         toastr.options = {
                             "newestOnTop": false,
                             "positionClass": "toast-bottom-right",
