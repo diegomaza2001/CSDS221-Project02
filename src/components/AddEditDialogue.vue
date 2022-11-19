@@ -2,6 +2,7 @@
     <v-dialog
     v-model="dialog"
     max-width="344"
+    @click:outside="this.closeDialog"
     >
     <template v-slot:activator="{ props }">
         <v-btn
@@ -24,7 +25,8 @@
                     <v-text-field
                     label="Title"
                     v-model="title"
-                    required
+                    :error-messages="this.titleErr"
+                    @change="this.titleErr=[]"
                     ></v-text-field>
                 </v-col>
             </v-row>
@@ -33,7 +35,8 @@
                 <v-text-field
                 label="Description"
                 v-model="description"
-                required
+                :error-messages="this.descriptionErr"
+                @change="this.descriptionErr=[]"
                 ></v-text-field>
             </v-col>
             </v-row>
@@ -46,7 +49,7 @@
             </v-row>
             <v-row>
             <v-col>
-                <v-radio-group inline label="Priority" color="primary" v-model="priority">
+                <v-radio-group inline label="Priority" color="primary" v-model="this.priority">
                     <v-radio label="Low" value="Low"></v-radio>
                     <v-radio label="Med" value="Med"></v-radio>
                     <v-radio label="High" value="High"></v-radio>
@@ -69,7 +72,7 @@
         prepend-icon="mdi-cancel"
         color="error"
         variant="flat"
-        @click="this.dialog = false"
+        @click="this.closeDialog"
         >
             Cancel
         </v-btn>
@@ -88,10 +91,14 @@ export default {
         inputTitle: String,
     },
     methods: {
+        closeDialog: function () {
+            this.dialog = false;
+            this.titleErr = [];
+            this.descriptionErr = [];
+        },
         submitClicked: function () {
             
             if(this.addDialog){
-                console.log("reached");
                 this.addTask();
 
             }
@@ -100,28 +107,30 @@ export default {
             }
         },
         addTask: function () {
-            this.taskList.push({
-                title: this.title,
-                description: this.description,
-                deadline: this.deadline,
-                complete: false,
-                priority: this.priority,
-            });
-            this.title = "";
-            this.description = "";
-            this.deadline = "";
-            this.priority = "";
-            this.dialog = false;
-            toastr.options = {
-                "newestOnTop": false,
-                "positionClass": "toast-bottom-right",
-                "showDuration": "300"
-            }   
-            toastr["success"]("Task was added successfully!");
+            if(this.validateSubmission()){
+                this.taskList.push({
+                    title: this.title,
+                    description: this.description,
+                    deadline: this.deadline,
+                    complete: false,
+                    priority: this.priority,
+                });
+                this.title = "";
+                this.description = "";
+                this.deadline = "";
+                this.priority = "";
+                this.dialog = false;
+                toastr.options = {
+                    "newestOnTop": false,
+                    "positionClass": "toast-bottom-right",
+                    "showDuration": "300"
+                }   
+                toastr["success"]("Task was added successfully!");
+            } 
         },
         updateTask: function () {
-            if(false){
-
+            if(!this.validateSubmission()){
+                console.log("Invalid Submission");
             }
             else{
                 for(let i = 0; i < this.taskList.length; i++){
@@ -132,10 +141,8 @@ export default {
                             deadline: this.deadline,
                             priority: this.priority,
                         };
-                        this.description = "";
-                        this.deadline = "";
-                        this.priority = "";
                         this.dialog = false;
+                        
                         toastr.options = {
                             "newestOnTop": false,
                             "positionClass": "toast-bottom-right",
@@ -146,6 +153,32 @@ export default {
                 } 
             }
             
+        },
+        validateSubmission: function () {
+            let returnVal = true;
+            if(this.addDialog){
+                if(this.title==""){
+                    this.titleErr=[];
+                    this.titleErr.push("Title cannot be empty");
+                    returnVal = false;
+                }
+                else{
+                    for(let i = 0; i < this.taskList.length; i++){
+                        if(this.taskList[i].title == this.title){
+                            this.titleErr=[];
+                            this.titleErr.push("Title must be unique");
+                            returnVal = false;
+                        }
+                    } 
+                }
+            }
+            if(this.description==""){
+                this.descriptionErr=[];
+                this.descriptionErr.push("Description cannot be empty");
+                returnVal = false;
+
+            }
+            return returnVal;
         },
     },
     created() {
@@ -178,6 +211,8 @@ export default {
         btnVariant: "",
         btnColor: "",
         submitText: "",
+        titleErr: [],
+        descriptionErr: [],
         dialog: false,
     }),
   }
