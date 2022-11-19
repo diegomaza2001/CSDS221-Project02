@@ -15,7 +15,7 @@
         </v-btn>
     </template>
     <v-card>
-        <v-card-title>
+        <v-card-title style="background-color: #2064c4; color: white">
             <v-icon :icon="this.icon" /> {{ this.dialogHeaderText }}
         </v-card-title>
         <v-card-text>
