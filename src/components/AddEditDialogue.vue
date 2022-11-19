@@ -112,10 +112,16 @@ export default {
         },
         addTask: function () {
             if(this.validateSubmission()){
+                if(this.deadline){
+                    let displayDeadline = moment(this.deadline).format("MM/DD/YYYY");
+                }
+                else {
+                    this.displayDeadline = "No deadline selected";
+                }
                 this.taskList.push({
                     title: this.title,
                     description: this.description,
-                    deadline: moment(this.deadline).format("MM/DD/YYYY"),
+                    deadline: this.displayDeadline,
                     complete: false,
                     priority: this.priority,
                 });
@@ -139,10 +145,16 @@ export default {
             else{
                 for(let i = 0; i < this.taskList.length; i++){
                     if(this.taskList[i].title == this.inputTitle){
+                        if(this.deadline){
+                            let displayDeadline = moment(this.deadline).format("MM/DD/YYYY");
+                        }
+                        else {
+                            this.displayDeadline = "No deadline selected";
+                        }
                         this.taskList[i] = {
                             title: this.taskList[i].title,
                             description: this.description,
-                            deadline: moment(this.deadline).format("MM/DD/YYYY"),
+                            deadline: this.displayDeadline,
                             priority: this.priority,
                         };
                         this.dialog = false;
