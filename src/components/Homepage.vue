@@ -2,15 +2,11 @@
     <v-app-bar color="blue-darken-3">
         <v-container>
             <v-row>
-                <v-col cols="6">
-                    <v-row>
-                      <v-col class="text-end">
-                        <v-icon icon="mdi-menu" /> FRAMEWORKS
-                      </v-col>
-                    </v-row>
+                <v-col cols="6" class="text-end">
+                  <v-icon icon="mdi-menu" /> FRAMEWORKS
                 </v-col>
                 <v-col cols="6">
-                    <AddButton :taskList="taskList"></AddButton>
+                  <AddEditDialogue :taskList="taskList" :addDialog="true"></AddEditDialogue>
                 </v-col>
             </v-row>
         </v-container>
@@ -53,7 +49,7 @@
                             <td class="text-center">{{ task.priority }}</td>
                             <td><v-checkbox color="primary"></v-checkbox></td>
                             <td>
-                                <UpdateBtn :taskList="taskList" :title="task.title"></UpdateBtn>
+                              <AddEditDialogue :taskList="taskList" :addDialog="false"></AddEditDialogue>
                                 <DeleteBtn :taskList="taskList" :title="task.title"></DeleteBtn> 
                             </td>
                         </tr>
@@ -67,18 +63,16 @@
   
 <script setup>
     //
-    import UpdateBtn from '@/components/UpdateButton.vue';
     import DeleteBtn from '@/components/DeleteButton.vue';
-    import AddButton from '@/components/AddButton.vue';
+    import AddEditDialogue from './AddEditDialogue.vue';
 </script>
 <script>
 import toastr from "toastr";
   export default {
     components: {
-      UpdateBtn,
-      DeleteBtn,
-      AddButton
-    },
+    DeleteBtn,
+    AddEditDialogue
+},
     created() {
       
     },
