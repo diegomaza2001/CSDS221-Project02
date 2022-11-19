@@ -54,14 +54,14 @@
                               <v-container>
                                 <v-row class="d-flex" justify="center">
                                   <div class="text-xs-center">
-                                    <v-checkbox color="primary"></v-checkbox>
+                                    <v-checkbox v-model="task.isChecked" color="primary"></v-checkbox>
                                   </div>
                                 </v-row>
                               </v-container> 
                             </td>
                             <td>
                               <v-container>
-                                <v-row class="d-flex" justify="center">
+                                <v-row v-if="!task.isChecked" class="d-flex" justify="center">
                                   <div class="text-xs-center mt-2">
                                     <AddEditDialogue :taskList="taskList" :inputTitle="task.title" :addDialog="false" class="mb-4"></AddEditDialogue>
                                   </div>
@@ -108,6 +108,7 @@ import { Container } from 'postcss';
             deadline: '11-14-22',
             complete: false,
             priority: 'med',
+            isChecked: false,
           },
           {
             title: 'Math Homework 2',
@@ -115,6 +116,7 @@ import { Container } from 'postcss';
             deadline: '11-14-22',
             complete: false,
             priority: 'med',
+            isChecked: false,
           },
           {
             title: 'Math Homework 3',
@@ -122,6 +124,7 @@ import { Container } from 'postcss';
             deadline: '11-14-22',
             complete: false,
             priority: 'med',
+            isChecked: false,
           },
           {
             title: 'Math Homework 4',
@@ -129,6 +132,7 @@ import { Container } from 'postcss';
             deadline: '11-14-22',
             complete: false,
             priority: 'med',
+            isChecked: false,
           },
         ],
       }
