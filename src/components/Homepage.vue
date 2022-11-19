@@ -49,8 +49,8 @@
                             <td class="text-center">{{ task.priority }}</td>
                             <td><v-checkbox color="primary"></v-checkbox></td>
                             <td>
-                              <AddEditDialogue :taskList="taskList" :addDialog="false"></AddEditDialogue>
-                                <DeleteBtn :taskList="taskList" :title="task.title"></DeleteBtn> 
+                              <AddEditDialogue :inputTitle="task.title" :taskList="taskList" :addDialog="false"></AddEditDialogue>
+                              <DeleteBtn :taskList="taskList" :title="task.title"></DeleteBtn> 
                             </td>
                         </tr>
                         </tbody>

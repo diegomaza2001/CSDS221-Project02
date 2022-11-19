@@ -7,7 +7,8 @@
         <v-btn
         class="mb-0 mt-2"
         :prepend-icon="this.icon" 
-        :variant="btnVariant"
+        :variant="this.btnVariant"
+        :color="this.btnColor"
         v-bind="props"
         >
         {{ this.buttonText }}
@@ -85,6 +86,7 @@ export default {
     props: {
         taskList: Array,
         addDialog: Boolean,
+        inputTitle: String,
     },
     methods: {
         submitClicked: function () {
@@ -124,7 +126,7 @@ export default {
             }
             else{
                 for(let i = 0; i < this.taskList.length; i++){
-                    if(this.taskList[i].title == this.title){
+                    if(this.taskList[i].title == this.inputTitle){
                         this.taskList[i] = {
                             title: this.title,
                             description: this.description,
@@ -161,6 +163,7 @@ export default {
             this.dialogHeaderText = "Edit Task";
             this.btnVariant="flat";
             this.submitText= "Edit";
+            this.btnColor="primary";
         }
         // props are exposed on `this`
         console.log(this.taskList);
@@ -174,6 +177,7 @@ export default {
         buttonText: "",
         dialogHeaderText: "",
         btnVariant: "",
+        btnColor: "",
         submitText: "",
         dialog: false,
     }),
