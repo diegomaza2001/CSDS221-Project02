@@ -6,7 +6,10 @@
                   <v-icon icon="mdi-menu" /> FRAMEWORKS
                 </v-col>
                 <v-col cols="6">
-                  <AddEditDialogue :taskList="taskList" :addDialog="true"></AddEditDialogue>
+                  <v-row class="d-flex" justify="end">
+                    <AddEditDialogue :taskList="taskList" :addDialog="true"></AddEditDialogue>
+                  </v-row>
+                  
                 </v-col>
             </v-row>
         </v-container>
@@ -47,10 +50,28 @@
                             <td class="text-center">{{ task.description }}</td>
                             <td class="text-center">{{ task.deadline }}</td>
                             <td class="text-center">{{ task.priority }}</td>
-                            <td><v-checkbox color="primary"></v-checkbox></td>
                             <td>
-                              <AddEditDialogue :inputTitle="task.title" :taskList="taskList" :addDialog="false"></AddEditDialogue>
-                              <DeleteBtn :taskList="taskList" :title="task.title"></DeleteBtn> 
+                              <v-container>
+                                <v-row class="d-flex" justify="center">
+                                  <div class="text-xs-center">
+                                    <v-checkbox color="primary"></v-checkbox>
+                                  </div>
+                                </v-row>
+                              </v-container> 
+                            </td>
+                            <td>
+                              <v-container>
+                                <v-row class="d-flex" justify="center">
+                                  <div class="text-xs-center mt-2">
+                                    <AddEditDialogue :taskList="taskList" :inputTitle="task.title" :addDialog="false" class="mb-4"></AddEditDialogue>
+                                  </div>
+                                </v-row>
+                                <v-row class="d-flex" justify="center">
+                                  <div class="text-xs-center mb-2">
+                                    <DeleteBtn :taskList="taskList" :title="task.title" class="mt-3"></DeleteBtn> 
+                                  </div>
+                                </v-row>
+                              </v-container> 
                             </td>
                         </tr>
                         </tbody>
@@ -68,10 +89,12 @@
 </script>
 <script>
 import toastr from "toastr";
+import { Container } from 'postcss';
   export default {
     components: {
     DeleteBtn,
-    AddEditDialogue
+    AddEditDialogue,
+    Container
 },
     created() {
       

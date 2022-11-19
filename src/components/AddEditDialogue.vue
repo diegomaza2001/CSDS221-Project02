@@ -5,7 +5,6 @@
     >
     <template v-slot:activator="{ props }">
         <v-btn
-        class="mb-0 mt-2"
         :prepend-icon="this.icon" 
         :variant="this.btnVariant"
         :color="this.btnColor"

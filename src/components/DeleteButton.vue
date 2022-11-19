@@ -1,19 +1,12 @@
 <template>
-    <v-container>
-        <v-row 
-        justify="center"
+    <v-btn
+        v-on:click="deleteTask"
+        variant="flat"
+        color="error"
+        prepend-icon="mdi-delete-forever"
         >
-        <v-btn
-            v-on:click="deleteTask"
-            class="mt-0 mb-2"
-            variant="flat"
-            color="error"
-            prepend-icon="mdi-delete-forever"
-            >
-                Delete
-        </v-btn>
-        </v-row>
-    </v-container>
+            Delete
+    </v-btn>
 </template>
 
 <script>
