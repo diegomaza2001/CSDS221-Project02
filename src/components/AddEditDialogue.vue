@@ -84,6 +84,7 @@
 <script>
 import toastr from "toastr";
 import 'toastr/build/toastr.css';
+import moment from "moment";
 export default {
     props: {
         taskList: Array,
@@ -100,7 +101,6 @@ export default {
             
             if(this.addDialog){
                 this.addTask();
-
             }
             else {
                 this.updateTask();
@@ -111,7 +111,7 @@ export default {
                 this.taskList.push({
                     title: this.title,
                     description: this.description,
-                    deadline: this.deadline,
+                    deadline: moment(this.deadline).format("MM/DD/YYYY"),
                     complete: false,
                     priority: this.priority,
                 });
@@ -138,7 +138,7 @@ export default {
                         this.taskList[i] = {
                             title: this.title,
                             description: this.description,
-                            deadline: this.deadline,
+                            deadline: moment(this.deadline).format("MM/DD/YYYY"),
                             priority: this.priority,
                         };
                         this.dialog = false;

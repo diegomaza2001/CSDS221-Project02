@@ -9,6 +9,7 @@
   "dependencies": {
     "@mdi/font": "5.9.55",
     "jquery": "^3.6.1",
+    "moment": "^2.29.4",
     "roboto-fontface": "*",
     "toastr": "^2.1.4",
     "vue": "^3.2.38",
