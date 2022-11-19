@@ -48,7 +48,7 @@
                         >
                             <td class="text-center">{{ task.title }}</td>
                             <td class="text-center">{{ task.description }}</td>
-                            <td class="text-center">{{ task.deadline }}</td>
+                            <td class="text-center">{{ moment(task.deadline).format("MM/DD/YYYY") }}</td>
                             <td class="text-center">{{ task.priority }}</td>
                             <td>
                               <v-container>
@@ -86,9 +86,9 @@
     //
     import DeleteBtn from '@/components/DeleteButton.vue';
     import AddEditDialogue from './AddEditDialogue.vue';
+    import moment from "moment";
 </script>
 <script>
-import toastr from "toastr";
 import { Container } from 'postcss';
   export default {
     components: {

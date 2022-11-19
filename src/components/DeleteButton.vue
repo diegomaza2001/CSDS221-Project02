@@ -32,10 +32,6 @@ import 'toastr/build/toastr.css';
             toastr["success"]("Task was deleted successfully!");
         },
     },
-    created() {
-        // props are exposed on `this`
-        console.log(this.title);
-    },
     data: () => ({
         dialog: false,
     }),

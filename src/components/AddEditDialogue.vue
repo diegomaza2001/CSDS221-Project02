@@ -84,7 +84,6 @@
 <script>
 import toastr from "toastr";
 import 'toastr/build/toastr.css';
-import moment from "moment";
 export default {
     props: {
         taskList: Array,
@@ -93,13 +92,20 @@ export default {
     },
     methods: {
         closeDialog: function () {
-            this.title = "";
-            this.description = "";
-            this.deadline = "";
-            this.priority = "";
-            this.dialog = false;
-            this.titleErr = [];
-            this.descriptionErr = [];
+            if(this.addDialog){
+                this.title = "";
+                this.description = "";
+                this.deadline = "";
+                this.priority = "";
+                this.dialog = false;
+                this.titleErr = [];
+                this.descriptionErr = [];
+            }
+            else {
+                this.dialog = false;
+                this.titleErr = [];
+                this.descriptionErr = [];
+            }
         },
         submitClicked: function () {
             
@@ -112,16 +118,10 @@ export default {
         },
         addTask: function () {
             if(this.validateSubmission()){
-                if(this.deadline){
-                    let displayDeadline = moment(this.deadline).format("MM/DD/YYYY");
-                }
-                else {
-                    this.displayDeadline = "";
-                }
                 this.taskList.push({
                     title: this.title,
                     description: this.description,
-                    deadline: this.displayDeadline,
+                    deadline: this.deadline,
                     complete: false,
                     priority: this.priority,
                 });
@@ -145,16 +145,10 @@ export default {
             else{
                 for(let i = 0; i < this.taskList.length; i++){
                     if(this.taskList[i].title == this.inputTitle){
-                        if(this.deadline){
-                            let displayDeadline = moment(this.deadline).format("MM/DD/YYYY");
-                        }
-                        else {
-                            this.displayDeadline = "";
-                        }
                         this.taskList[i] = {
                             title: this.taskList[i].title,
                             description: this.description,
-                            deadline: this.displayDeadline,
+                            deadline: this.deadline,
                             priority: this.priority,
                         };
                         this.dialog = false;
@@ -211,9 +205,16 @@ export default {
             this.btnVariant="flat";
             this.submitText= "Edit";
             this.btnColor="primary";
+            for(let i = 0; i < this.taskList.length; i++){
+                if(this.taskList[i].title == this.inputTitle){
+                    this.title = this.inputTitle;
+                    this.description = this.taskList[i].description;
+                    this.deadline = this.taskList[i].deadline;
+                    this.priority = this.taskList[i].priority;
+                }
+            } 
+
         }
-        // props are exposed on `this`
-        console.log(this.taskList);
     },
     data: () => ({
         title: "",
