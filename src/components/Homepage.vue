@@ -48,7 +48,7 @@
                         >
                             <td class="text-center">{{ task.title }}</td>
                             <td class="text-center">{{ task.description }}</td>
-                            <td class="text-center">{{ moment(task.deadline).format("MM/DD/YYYY") }}</td>
+                            <td class="text-center">{{ this.displayDate(task.deadline) }}</td>
                             <td class="text-center">{{ task.priority }}</td>
                             <td>
                               <v-container>
@@ -96,16 +96,20 @@ import { Container } from 'postcss';
     AddEditDialogue,
     Container
 },
-    created() {
-      
-    },
     data () {
       return {
         taskList: [],
       }
     },
     methods: {
-
+      displayDate: function ( date ) {
+        if(date == ""){
+          return "";
+        }
+        else {
+          return moment(date).format("MM/DD/YYYY");
+        }
+      }
     }
   }
 </script>
